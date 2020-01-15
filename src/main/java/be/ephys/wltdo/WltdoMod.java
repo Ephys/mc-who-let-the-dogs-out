@@ -3,6 +3,7 @@ package be.ephys.wltdo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
@@ -55,7 +56,7 @@ public class WltdoMod {
     EntityWolf wolf = (EntityWolf) entity;
     IMessage message = new NewSkinMessageHandler.NewSkinMessage(
       wolf.getEntityId(),
-      WolfSkin.getWolfSkinId(wolf.getUniqueID())
+      WolfSkin.getWolfSkinId(wolf)
     );
 
     NETWORKER.sendTo(message, (EntityPlayerMP) trackEvent.getEntityPlayer());
@@ -67,11 +68,12 @@ public class WltdoMod {
     // so we can add new skins without any issue
     // and so baby wolves will inherit them
 
-    if (constructingEvent.getEntity().world.isRemote) {
+    Entity entity = constructingEvent.getEntity();
+    World world = entity.getEntityWorld();
+    if (world == null || world.isRemote) {
       return;
     }
 
-    Entity entity = constructingEvent.getEntity();
     if (!(entity instanceof EntityWolf)) {
       return;
     }
@@ -86,7 +88,7 @@ public class WltdoMod {
   private static void syncWolfSkin(EntityWolf wolf) {
     IMessage message = new NewSkinMessageHandler.NewSkinMessage(
       wolf.getEntityId(),
-      WolfSkin.getWolfSkinId(wolf.getUniqueID())
+      WolfSkin.getWolfSkinId(wolf)
     );
 
     NETWORKER.sendToAllTracking(message, wolf);
@@ -128,5 +130,6 @@ public class WltdoMod {
     EntityWolf parentWolf = (EntityWolf) parent;
 
     WolfSkin.setWolfSkinId(childWolf, WolfSkin.getWolfSkinId(parentWolf));
+    syncWolfSkin(childWolf);
   }
 }

@@ -54,7 +54,7 @@ public class NewSkinMessageHandler implements IMessageHandler<NewSkinMessageHand
     }
 
     int entityId = message.getEntityId();
-    Entity entity = Minecraft.getMinecraft().world.getEntityByID(message.getEntityId());
+    Entity entity = Minecraft.getMinecraft().world.getEntityByID(entityId);
 
     // the entity has not loaded on the client-side yet
     // store the message for processing once the entity has loaded (#onWolfJoin)
