@@ -4,6 +4,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Random;
 import java.util.UUID;
 
 public final class WolfSkin {
@@ -14,15 +15,15 @@ public final class WolfSkin {
     "black",
     "collie1",
     "collie2",
-//    "creeper",
     "dalmatian",
     "dog1",
-//    "fire",
     "huskylike",
-    "moonmoon",
-//    "skelly",
     "white",
+    "moonmoon",
 //    "zombie"
+    //    "fire",
+    //    "skelly",
+    //    "creeper",
   };
 
   private static final ResourceLocation[][] textureCache = new ResourceLocation[WolfSkin.textureNames.length][];
@@ -69,7 +70,13 @@ public final class WolfSkin {
   public static int getWolfSkinId(UUID uuid) {
     int textureCount = availableTextureCount();
 
-    return Math.abs((int) ((uuid.getLeastSignificantBits() % textureCount) + (uuid.getMostSignificantBits() % textureCount))) % textureCount;
+    Random rand = new Random(uuid.getLeastSignificantBits() ^ uuid.getMostSignificantBits());
+
+    if (rand.nextFloat() < 0.03) {
+      return 8; // MOON MOON
+    }
+
+    return rand.nextInt(textureCount - 1);
   }
 
   public static int getWolfSkinId(EntityWolf wolf) {
