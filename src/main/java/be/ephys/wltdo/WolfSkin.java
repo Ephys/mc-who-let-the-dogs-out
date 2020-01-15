@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.UUID;
 
 public final class WolfSkin {
-  public static final String WOLF_SKIN_KEY = ExampleMod.MODID + ":skin";
+  public static final String WOLF_SKIN_KEY = WltdoMod.MODID + ":skin";
 
   public static final String[] textureNames = new String[] {
     "vanilla",
@@ -51,9 +51,9 @@ public final class WolfSkin {
 
     String textureName = textureNames[id];
     ResourceLocation[] textures = new ResourceLocation[] {
-      new ResourceLocation(ExampleMod.MODID, "textures/entity/wolf/" + textureName + "/neutral.png"),
-      new ResourceLocation(ExampleMod.MODID, "textures/entity/wolf/" + textureName + "/tame.png"),
-      new ResourceLocation(ExampleMod.MODID, "textures/entity/wolf/" + textureName + "/angry.png")
+      new ResourceLocation(WltdoMod.MODID, "textures/entity/wolf/" + textureName + "/neutral.png"),
+      new ResourceLocation(WltdoMod.MODID, "textures/entity/wolf/" + textureName + "/tame.png"),
+      new ResourceLocation(WltdoMod.MODID, "textures/entity/wolf/" + textureName + "/angry.png")
     };
 
     textureCache[id] = textures;

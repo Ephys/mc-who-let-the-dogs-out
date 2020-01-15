@@ -5,7 +5,6 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,11 +20,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-@Mod(modid = ExampleMod.MODID, name = ExampleMod.NAME, version = ExampleMod.VERSION)
-public class ExampleMod {
-  public static final String MODID = "examplemod";
-  public static final String NAME = "Example Mod";
-  public static final String VERSION = "1.0";
+@Mod(modid = WltdoMod.MODID, name = WltdoMod.NAME, version = WltdoMod.VERSION)
+public class WltdoMod {
+  public static final String MODID = "who-let-the-dogs-out";
+  public static final String NAME = "Who Let The Dogs Out";
+  public static final String VERSION = "1.0.0";
 
   @SidedProxy(modId = MODID, clientSide = "be.ephys.wltdo.ClientProxy", serverSide = "be.ephys.wltdo.CommonProxy")
   public static CommonProxy sidedProxy;
